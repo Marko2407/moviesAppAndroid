@@ -1,0 +1,19 @@
+query GetUserQuery($userId: ID!) {
+    userInfo(userId: $userId) {
+        _id
+        email
+        password
+        refreshToken
+        favoriteMovies {
+            _id
+            title
+            description
+            img
+            url
+            category
+            duration
+            releaseDate
+            rating
+        }
+    }
+}
