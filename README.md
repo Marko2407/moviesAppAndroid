@@ -1,7 +1,7 @@
 # moviesAppAndroid
 
 
-![Projects-02](https://user-images.githubusercontent.com/76631862/210286641-701b0a0d-be6a-46f9-80ff-4a5cdef06225.png = 100x20)
+![Projects-02](https://user-images.githubusercontent.com/76631862/210286641-701b0a0d-be6a-46f9-80ff-4a5cdef06225.png=100x20)
 ![Projects-03](https://user-images.githubusercontent.com/76631862/210286646-fe1d40a2-4c67-40d6-9a37-09d84f7d3b36.png)
 ![Projects-04](https://user-images.githubusercontent.com/76631862/210286648-ee0cf3db-e11f-4c1e-aeed-098aa03018e9.png)
 ![Projects-05](https://user-images.githubusercontent.com/76631862/210286649-e4f9ce1e-3bd6-4a3d-82bb-cbc091ff6cbb.png)
