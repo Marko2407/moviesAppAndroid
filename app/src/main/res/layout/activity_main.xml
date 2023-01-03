@@ -15,7 +15,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/btn"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -65,7 +65,7 @@
             android:layout_height="1dp"
             android:layout_marginHorizontal="20dp"
             android:background="@color/baby_blue"
-            app:layout_constraintTop_toBottomOf="@id/btn" />
+            app:layout_constraintTop_toBottomOf="@id/title" />
 
         <FrameLayout
             android:id="@+id/fragment_container"
@@ -116,6 +116,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:backgroundTint="@color/white"
-        android:fitsSystemWindows="true" />
+        android:backgroundTint="@color/dark_grey"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_user_info"
+        app:itemIconTint="@color/grey_m"
+        app:itemTextColor="@color/grey_m"
+        app:menu="@menu/side_menu">
+
+        <include
+            android:id="@+id/nav_drawer"
+            layout="@layout/nav_drawer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom" />
+    </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

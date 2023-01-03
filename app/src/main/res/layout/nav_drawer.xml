@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <View
+        android:id="@+id/horizontal_upper_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/baby_blue" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/dark_grey"
+        android:shadowColor="@color/dark_grey"
+        android:stateListAnimator="@null"
+        android:text="Log out"
+        android:textSize="14sp" />
+
+    <View
+        android:id="@+id/horizontal_bottom_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/baby_blue"/>
+
+    <TextView
+        android:id="@+id/txt_app_version"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="App Version - V1.0.0."
+        android:paddingTop="10dp"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:paddingVertical="20dp"/>
+
+</LinearLayout>
