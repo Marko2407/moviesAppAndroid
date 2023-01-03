@@ -4,5 +4,15 @@ mutation CreateUserMutation($userInput: UserInput!) {
         email
         password
         refreshToken
+        favoriteMovies {
+            _id
+            title
+            description
+            img
+            url
+            duration
+            releaseDate
+            rating
+        }
     }
 }

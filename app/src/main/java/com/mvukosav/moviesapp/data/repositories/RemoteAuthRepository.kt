@@ -5,6 +5,7 @@ import com.mvukosav.moviesapp.GetUserQuery
 import com.mvukosav.moviesapp.domain.mappers.UserDataToDomainMapper
 import com.mvukosav.moviesapp.domain.models.User
 import com.mvukosav.moviesapp.domain.repositories.AuthRepository
+import com.mvukosav.moviesapp.network.ErrorCode
 import com.mvukosav.moviesapp.network.Response
 import com.mvukosav.moviesapp.network.graphql.GraphQlManager
 import javax.inject.Inject
@@ -20,7 +21,10 @@ class RemoteAuthRepository @Inject constructor(
             val response =
                 GraphQlManager.apolloClient().query(GetUserQuery("63af0afc4228af3a6392ea08"))
                     .execute()
-            val user = response.data?.userInfo ?: return Response.Error(201, "Can not found user")
+            val user = response.data?.userInfo ?: return Response.Error(
+                201,
+                ErrorCode.USER_NOT_FOUND.name
+            )
 
             val mappedUser = userDataToDomainMapper.userDataToDomain(user)
             return Response.Result(

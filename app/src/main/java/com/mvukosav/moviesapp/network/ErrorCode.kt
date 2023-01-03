@@ -6,5 +6,6 @@ enum class ErrorCode {
     FORBIDDEN,
     AUTHORIZATION_ERROR,
     UNKNOWN_ERROR,
-    NETWORK_ERROR
+    NETWORK_ERROR,
+    USER_NOT_FOUND
 }
