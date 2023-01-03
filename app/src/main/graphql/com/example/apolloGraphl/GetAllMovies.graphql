@@ -1,0 +1,12 @@
+query GetAllMoviesQuery {
+    movies {
+        _id
+        title
+        description
+        img
+        url
+        duration
+        releaseDate
+        rating
+    }
+}

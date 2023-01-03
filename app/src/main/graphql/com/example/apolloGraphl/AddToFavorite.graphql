@@ -1,0 +1,13 @@
+mutation AddToFavoriteMutation($movieId: ID!, $userId: ID!) {
+    addToFavorite(movieId: $movieId, userId: $userId) {
+        _id
+        category
+        description
+        duration
+        img
+        rating
+        releaseDate
+        title
+        url
+    }
+}

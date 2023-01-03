@@ -1,0 +1,6 @@
+mutation NewAccessTokenMutation($refreshToken: String!, $userId: String!) {
+    newAccessToken(refreshToken: $refreshToken, userId: $userId) {
+        expired
+        token
+    }
+}

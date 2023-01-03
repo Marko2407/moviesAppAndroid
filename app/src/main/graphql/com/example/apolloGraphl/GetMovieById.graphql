@@ -1,0 +1,13 @@
+query GetMovieByIdQuery($movieId: ID!) {
+    movieById(movieId: $movieId) {
+        _id
+        title
+        description
+        img
+        url
+        category
+        duration
+        releaseDate
+        rating
+    }
+}
