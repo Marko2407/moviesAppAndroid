@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private val viewModel: MainActivityViewModel by viewModels()
     private var currentFragment: Int = HOME_FRAGMENT
-    private var drawerOpen:Boolean = false
+    private var drawerOpen: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,14 +39,14 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationBar.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
-                    binding.title.text = "Movies"
+                    binding.title.text = getString(R.string.movies)
                     setCurrentFragment(HomeFragment())
                     it.isChecked = true
                     currentFragment = HOME_FRAGMENT
                     return@setOnItemSelectedListener true
                 }
                 R.id.watch_list -> {
-                    binding.title.text = "Watch list"
+                    binding.title.text = getString(R.string.watch_list)
                     setCurrentFragment(HomeFragment())
                     it.isChecked = true
                     currentFragment = WATCH_LIST_FRAGMENT
@@ -73,16 +73,16 @@ class MainActivity : AppCompatActivity() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
             binding.bottomNavigationView.menu.getItem(currentFragment).isChecked = true
-        }else{
+        } else {
             super.onBackPressed()
         }
     }
 
-    private fun setOnClickListeners(){
-        binding.userProfile.setOnClickListener{
+    private fun setOnClickListeners() {
+        binding.userProfile.setOnClickListener {
             //TODO("Open user profile")
         }
-        binding.imgSearchBtn.setOnClickListener{
+        binding.imgSearchBtn.setOnClickListener {
             //TODO("Open search screen")
         }
     }
@@ -91,20 +91,23 @@ class MainActivity : AppCompatActivity() {
     private fun drawerListener() {
         drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
-                if (drawerOpen){
+                if (drawerOpen) {
                     binding.bottomNavigationView.menu.getItem(currentFragment).isChecked = true
                     drawerOpen = false
                 }
             }
+
             override fun onDrawerOpened(drawerView: View) {
                 drawerOpen = true
             }
+
             override fun onDrawerStateChanged(newState: Int) {}
             override fun onDrawerClosed(drawerView: View) {
                 drawerOpen = false
             }
         })
     }
+
     companion object {
         fun createIntent(context: Context) = Intent(context, MainActivity::class.java)
         private const val WATCH_LIST_FRAGMENT = 2
