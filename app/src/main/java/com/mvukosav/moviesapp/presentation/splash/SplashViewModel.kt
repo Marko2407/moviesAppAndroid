@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mvukosav.moviesapp.domain.interactors.splash.LoggedInUser
+import com.mvukosav.moviesapp.domain.interactors.splash.LogoutUser
 import com.mvukosav.moviesapp.domain.models.User
 import com.mvukosav.moviesapp.network.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
-    private val loggedInUser: LoggedInUser
+    private val loggedInUser: LoggedInUser,
+    private val logoutUser: LogoutUser,
 ) : ViewModel() {
 
     private val userLiveData = MutableLiveData<User?>()
@@ -31,8 +33,14 @@ class SplashViewModel @Inject constructor(
                 }
             }
         }
-
-
     }
 
+    suspend fun logout() {
+        withContext(viewModelScope.coroutineContext) {
+            //check if user is login else login user
+            when (val response = logoutUser()) {
+                else -> {}
+            }
+        }
+    }
 }

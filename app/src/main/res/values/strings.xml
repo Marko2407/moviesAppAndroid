@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MoviesApp</string>
+    <string name="sign_in">Sign in</string>
+    <string name="movies">Movies</string>
+    <string name="search">Search</string>
+    <string name="user_profile">user profile</string>
+    <string name="home">home</string>
+    <string name="favorite">favorite</string>
 </resources>

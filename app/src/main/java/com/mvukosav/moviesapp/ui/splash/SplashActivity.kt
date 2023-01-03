@@ -8,9 +8,14 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.mvukosav.moviesapp.R
 import com.mvukosav.moviesapp.databinding.ActivitySplashBinding
 import com.mvukosav.moviesapp.presentation.splash.SplashViewModel
+import com.mvukosav.moviesapp.ui.home.MainActivity
+import com.mvukosav.moviesapp.ui.login.LoginActivity
+import com.mvukosav.moviesapp.ui.splash.SplashActivity.Companion.createIntent
 import com.mvukosav.moviesapp.utils.observeOnMainThread
+import com.mvukosav.moviesapp.utils.setGone
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 
@@ -31,13 +36,31 @@ class SplashActivity : AppCompatActivity() {
 
         observeOnMainThread(viewModel.fetchUserLiveData){
             if (it != null){
-                //odvedi me na main
+                openMainScreen()
                 Log.d("SUCCESS", it.toString())
             }else{
-                //Odvedi me na login
+                openLoginScreen()
                 Log.d("FAILED", it.toString())
             }
         }
+    }
+
+    private fun openMainScreen() {
+        hideProgressBar()
+        startActivity(MainActivity.createIntent(this))
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        finish()
+    }
+
+    private fun openLoginScreen() {
+        hideProgressBar()
+        startActivity(LoginActivity.createIntent(this))
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        finish()
+    }
+
+    private fun hideProgressBar(){
+        binding.loadingBar.setGone()
     }
 
     companion object {
