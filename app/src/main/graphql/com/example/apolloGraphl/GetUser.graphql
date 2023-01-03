@@ -1,6 +1,7 @@
 query GetUserQuery($userId: ID!) {
     userInfo(userId: $userId) {
         _id
+        fullName
         email
         password
         refreshToken

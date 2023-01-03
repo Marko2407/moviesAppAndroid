@@ -52,7 +52,6 @@
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
-            android:text="MV"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@id/horizontal_divider"
@@ -75,7 +74,7 @@
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/horizontal_divider"
             tools:context=".ui.home.MainActivity"
             tools:showIn="@layout/activity_main" />
 

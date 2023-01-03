@@ -8,6 +8,7 @@ import com.mvukosav.moviesapp.domain.models.User
 class UserDataToDomainMapperImpl : UserDataToDomainMapper {
     override fun userDataToDomain(user: GetUserQuery.UserInfo): User {
         return User(
+            userFullName = user.fullName,
             userId = user._id,
             email = user.email,
             refreshToken = user.refreshToken,

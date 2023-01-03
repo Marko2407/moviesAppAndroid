@@ -8,5 +8,5 @@ import javax.inject.Inject
 class LogoutUser @Inject constructor(
     private val authRepository: AuthRepository
 ){
-    suspend operator fun invoke(): Response<User> = authRepository.loggedInUser()
+   operator fun invoke(): Boolean = authRepository.logout()
 }

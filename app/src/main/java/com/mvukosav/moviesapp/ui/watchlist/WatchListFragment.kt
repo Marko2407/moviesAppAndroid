@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mvukosav.moviesapp.databinding.FragmentHomeBinding
+import com.mvukosav.moviesapp.databinding.FragmentWatchListBinding
 import com.mvukosav.moviesapp.presentation.home.HomeFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class WatchListFragment : Fragment() {
 
-    private lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentWatchListBinding
     private val homeViewModel: HomeFragmentViewModel by viewModels()
 
 
@@ -22,7 +23,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHomeBinding.inflate(inflater)
+        binding = FragmentWatchListBinding.inflate(inflater)
         return binding.root
     }
 

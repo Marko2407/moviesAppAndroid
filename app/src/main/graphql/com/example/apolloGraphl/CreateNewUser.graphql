@@ -1,6 +1,7 @@
 mutation CreateUserMutation($userInput: UserInput!) {
     createUser(userInput: $userInput) {
         _id
+        fullName
         email
         password
         refreshToken
