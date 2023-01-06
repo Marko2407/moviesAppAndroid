@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.mvukosav.moviesapp"
-        minSdk 26
+        minSdk 28
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -78,6 +78,10 @@ dependencies {
     implementation"com.apollographql.apollo:apollo-coroutines-support:2.5.9"
 
     implementation"com.squareup.okhttp3:logging-interceptor:4.9.3"
+
+    //Glide for images
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 }
 
 kapt {

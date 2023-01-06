@@ -1,13 +1,18 @@
-type User{
+schema {
+  query: RootQuery
+  mutation: RootMutation
+}
+
+type User {
   _id: ID!
   fullName: String!
   email: String!
-  password : String
+  password: String
   refreshToken: String
   favoriteMovies: [Movie]
 }
 
-enum Category{
+enum Category {
   ACTION
   NONE
   COMEDY
@@ -18,8 +23,8 @@ enum Category{
   ROMANTIC
 }
 
-type Movie{
-  _id:ID!
+type Movie {
+  _id: ID!
   title: String!
   description: String!
   img: String
@@ -30,19 +35,19 @@ type Movie{
   rating: Float
 }
 
-type AuthData{
+type AuthData {
   userId: ID!
   token: String!
   refreshToken: String!
   tokenExpired: Int!
 }
 
-type Token{
+type Token {
   token: String!
   expired: Int!
 }
 
-input MovieInput{
+input MovieInput {
   title: String!
   description: String!
   img: String
@@ -52,26 +57,25 @@ input MovieInput{
   releaseDate: String!
   rating: Float
 }
-input UserInput{
+
+input UserInput {
   fullName: String!
   email: String!
   password: String!
 }
 
-type RootQuery{
+type RootQuery {
   user: [User!]
-  userInfo(userId: ID!): User!
-  login(email: String!, password: String!):AuthData!
+  userInfo(userId: ID!): User
+  login(email: String!, password: String!): AuthData!
   movies: [Movie!]
   movieById(movieId: ID!): Movie!
 }
-type RootMutation{
+
+type RootMutation {
   createUser(userInput: UserInput!): User
   createMovie(movieInput: MovieInput!): Movie
-  newAccessToken(userId: String!,refreshToken: String!): Token!
+  newAccessToken(userId: String!, refreshToken: String!): Token!
   addToFavorite(movieId: ID!, userId: ID!): Movie!
-}
-schema{
-  query: RootQuery
-  mutation:RootMutation
+  removeFromFavorite(movieId: ID!, userId: ID!): Movie!
 }

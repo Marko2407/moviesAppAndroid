@@ -4,7 +4,7 @@ data class User(
     val userId: String?,
     val email: String?,
     val refreshToken: String?,
-    val favoriteMovies: MutableList<Movie>,
+    val favoriteMovies: MutableList<String>,
     val userFullName: String? = "",
     var userInitials: String? = ""
 ) { init {

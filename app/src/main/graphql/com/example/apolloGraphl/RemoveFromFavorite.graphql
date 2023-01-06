@@ -1,0 +1,13 @@
+mutation RemoveFromFavorite($movieId: ID!, $userId: ID!) {
+    removeFromFavorite(movieId: $movieId, userId: $userId) {
+        _id
+        title
+        description
+        img
+        url
+        category
+        duration
+        releaseDate
+        rating
+    }
+}

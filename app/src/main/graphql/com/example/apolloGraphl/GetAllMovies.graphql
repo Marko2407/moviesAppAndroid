@@ -8,5 +8,6 @@ query GetAllMoviesQuery {
         duration
         releaseDate
         rating
+        category
     }
 }

@@ -16,6 +16,7 @@ import com.mvukosav.moviesapp.domain.models.User
 import com.mvukosav.moviesapp.presentation.home.MainActivityViewModel
 import com.mvukosav.moviesapp.ui.search.SearchActivity
 import com.mvukosav.moviesapp.ui.settings.SettingsActivity
+import com.mvukosav.moviesapp.ui.watchlist.WatchListFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

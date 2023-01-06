@@ -11,4 +11,11 @@
     <string name="settings">Settings</string>
     <string name="watch_list">Watch list</string>
     <string name="categories">Categories</string>
+    <string name="dummy_text">Nameless. Fearless. Relentless. The CIA trained him to be ghost, to exist in tge gray. Now they want to make their most dangerous asset disappear. Now they want to make their most dangerous asset disappear</string>
+    <string name="_120_min">%1$d min</string>
+    <string name="remove">Remove</string>
+    <string name="details">Details</string>
+    <string name="there_is_no_movies_yet">There Is No Movies Yet!</string>
+    <string name="add_your_favorite_movies_by_clicking">Add your favorite movies by clicking +</string>
+    <string name="fetch_movies">Fetch movies</string>
 </resources>

@@ -50,13 +50,14 @@
             android:layout_marginBottom="6dp"
             android:background="@drawable/user_profile_background"
             android:clickable="true"
+            android:contentDescription="@string/user_profile"
             android:focusable="true"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@id/horizontal_divider"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
         <View
             android:id="@+id/horizontal_divider"
