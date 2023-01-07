@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/details"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="250dp"
     android:background="@color/dark_grey"
     android:clickable="true"
     android:focusable="true"
@@ -19,22 +19,22 @@
 
     <ImageView
         android:id="@+id/img_movie"
-        android:layout_width="110dp"
-        android:layout_height="150dp"
+        android:layout_width="130dp"
+        android:layout_height="190dp"
         android:layout_gravity="center"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
         android:contentDescription="@string/movies"
         android:scaleType="fitXY"
         android:src="@drawable/movie_img"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/horizontal_divider" />
 
     <TextView
         android:id="@+id/txt_movie_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
         android:text="The Gray Man"
         android:textColor="@color/white"
         android:textSize="18sp"
@@ -47,7 +47,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="@color/grey_m60"
-        android:textSize="11sp"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@id/txt_movie_title"
         app:layout_constraintTop_toBottomOf="@id/txt_movie_title" />
 
@@ -58,27 +58,28 @@
         android:layout_marginStart="10dp"
         android:text="@string/_120_min"
         android:textColor="@color/grey_m60"
-        android:textSize="11sp"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@id/txt_movie_year"
         app:layout_constraintTop_toBottomOf="@id/txt_movie_title" />
 
     <TextView
         android:id="@+id/txt_movie_description"
         android:layout_width="0dp"
-        android:layout_height="65dp"
+        android:layout_height="100dp"
         android:layout_marginEnd="20dp"
         android:ellipsize="end"
-        android:maxLines="4"
+        android:maxLines="6"
         android:paddingBottom="5dp"
         android:text="@string/dummy_text"
         android:textColor="@color/grey_m"
-        android:textSize="12sp"
+        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/txt_movie_title"
         app:layout_constraintTop_toBottomOf="@id/txt_movie_year" />
 
     <ImageView
         android:id="@+id/btn_add_to_watch_list"
+        android:layout_marginStart="10dp"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/add_icon"
@@ -90,8 +91,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Watch list"
+
         android:textColor="@color/grey_m60"
-        android:textSize="9sp"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@id/btn_add_to_watch_list"
         app:layout_constraintStart_toStartOf="@id/btn_add_to_watch_list"
         app:layout_constraintTop_toBottomOf="@id/btn_add_to_watch_list" />

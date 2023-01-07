@@ -10,5 +10,6 @@ data class Movie(
     val releaseDate: String,
     val url: String? = "",
     val img: String? = "",
+    val rating: Double? = 0.0,
     var isAddedToWatchList: Boolean = false
 )

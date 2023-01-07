@@ -58,6 +58,8 @@ class WatchListHolder(
             this.logout.text = context.getString(R.string.details)
         }
         setImage(context, model.img, binding.imgMovieWatchList)
+        binding.txtMovieCategory.txtTitle.text =
+            model.category[0].lowercase().replaceFirstChar { it.titlecase() }
         binding.txtMovieTitle.text = model.title
         binding.txtMovieYeary.apply {
             txtTitle.text = convertLongToTime(model.releaseDate.toLong())

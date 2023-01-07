@@ -18,4 +18,8 @@ interface MoviesRepository {
     fun getWatchList(): MutableList<Movie>
 
     suspend fun removeFromWatchList(movieId: String):  Response<MutableList<Movie>>
+
+    suspend fun addToWatchList(movieId: String):  Response<MutableList<Movie>>
+
+    suspend fun getSearchMovies(searchInput: String): Response<MutableList<Movie>?>
 }

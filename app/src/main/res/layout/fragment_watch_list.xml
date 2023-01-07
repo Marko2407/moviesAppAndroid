@@ -49,6 +49,5 @@
             android:text="@string/add_your_favorite_movies_by_clicking"
             android:textColor="@color/grey"
             android:textSize="16sp" />
-
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

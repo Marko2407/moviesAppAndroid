@@ -4,6 +4,7 @@ import android.content.Context
 import com.mvukosav.moviesapp.GetAllMoviesQuery
 import com.mvukosav.moviesapp.GetMovieByIdQuery
 import com.mvukosav.moviesapp.GetUserQuery
+import com.mvukosav.moviesapp.MoviesBySearchInputQuery
 import com.mvukosav.moviesapp.domain.mappers.MoviesDataToDomainMapper
 import com.mvukosav.moviesapp.domain.models.Movie
 import com.mvukosav.moviesapp.domain.models.MoviesByCategories
@@ -31,6 +32,13 @@ class MoviesDataToDomainMapperImpl(private val context: Context) : MoviesDataToD
         }.toMutableList()
     }
 
+    override fun searchMoviesListDataToDomain(movies: List<MoviesBySearchInputQuery.MoviesBySearchInput>): MutableList<Movie> {
+        return movies.map {
+            searchMovieDataToDomainMapper(it)
+        }.toMutableList()
+    }
+
+
     override fun movieDataToDomain(movie: GetMovieByIdQuery.MovieById): Movie {
         return Movie(
             movie._id,
@@ -41,6 +49,7 @@ class MoviesDataToDomainMapperImpl(private val context: Context) : MoviesDataToD
             movie.releaseDate,
             movie.url,
             movie.img,
+            movie.rating,
             isAddedToWatchList = userWatchList.contains(movie._id)
         )
     }
@@ -63,6 +72,20 @@ class MoviesDataToDomainMapperImpl(private val context: Context) : MoviesDataToD
         return movies
     }
 
+    override fun getMoviesByCategory(
+        movies: MutableList<Movie>,
+        category: String
+    ): MutableList<Movie> {
+        var filteredMovies: MutableList<Movie>
+
+        movies.filter {
+            it.category[0] == category.uppercase()
+        }.let { 
+            filteredMovies = it.toMutableList()
+        }
+        return filteredMovies
+    }
+
     override fun categories(): List<String> = categories
 
     override fun setUserWatchList(favoriteMovies: List<GetUserQuery.FavoriteMovie?>?): MutableList<String> {
@@ -76,10 +99,10 @@ class MoviesDataToDomainMapperImpl(private val context: Context) : MoviesDataToD
     }
 
     override fun getUserWatchList(movies: MutableList<Movie>): MutableList<Movie> {
-        movies.removeIf{ movie->
+        movies.removeIf { movie ->
             !userWatchList.contains(movie.movieId)
         }
-         return movies
+        return movies
     }
 
     private fun getAllCategories(category: List<Category?>?) {
@@ -104,6 +127,22 @@ class MoviesDataToDomainMapperImpl(private val context: Context) : MoviesDataToD
             releaseDate = movies.releaseDate,
             img = movies.img,
             url = movies.url,
+            rating = movies.rating,
+            isAddedToWatchList = userWatchList.contains(movies._id)
+        )
+    }
+
+    private fun searchMovieDataToDomainMapper(movies: MoviesBySearchInputQuery.MoviesBySearchInput): Movie {
+        return Movie(
+            movieId = movies._id,
+            title = movies.title,
+            description = movies.description,
+            category = categoriesDataToDomainMapper(movies.category),
+            duration = movies.duration,
+            releaseDate = movies.releaseDate,
+            img = movies.img,
+            url = movies.url,
+            rating = movies.rating,
             isAddedToWatchList = userWatchList.contains(movies._id)
         )
     }

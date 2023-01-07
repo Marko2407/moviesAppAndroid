@@ -1,6 +1,5 @@
-package com.mvukosav.moviesapp.domain.interactors.home
+package com.mvukosav.moviesapp.domain.interactors.watchlist
 
-import com.mvukosav.moviesapp.domain.models.Actions
 import com.mvukosav.moviesapp.domain.models.Movie
 import com.mvukosav.moviesapp.domain.repositories.MoviesRepository
 import com.mvukosav.moviesapp.network.Response

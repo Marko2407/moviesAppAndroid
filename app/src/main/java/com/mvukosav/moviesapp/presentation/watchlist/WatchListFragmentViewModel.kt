@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mvukosav.moviesapp.domain.interactors.home.RemoveFromWatchList
+import com.mvukosav.moviesapp.domain.interactors.watchlist.RemoveFromWatchList
 import com.mvukosav.moviesapp.domain.interactors.watchlist.GetWatchList
 import com.mvukosav.moviesapp.domain.models.Movie
 import com.mvukosav.moviesapp.network.Response

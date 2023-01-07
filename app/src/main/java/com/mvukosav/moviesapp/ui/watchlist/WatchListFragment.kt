@@ -14,6 +14,7 @@ import com.mvukosav.moviesapp.databinding.FragmentWatchListBinding
 import com.mvukosav.moviesapp.presentation.watchlist.WatchListFragmentViewModel
 import com.mvukosav.moviesapp.presentation.watchlist.adapters.OnWatchListClickListener
 import com.mvukosav.moviesapp.presentation.watchlist.adapters.WatchListRecyclerViewAdapter
+import com.mvukosav.moviesapp.ui.details.MovieDetailsActivity
 import com.mvukosav.moviesapp.utils.setGone
 import com.mvukosav.moviesapp.utils.setVisible
 import dagger.hilt.android.AndroidEntryPoint
@@ -88,11 +89,18 @@ class WatchListFragment : Fragment(), OnWatchListClickListener {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.initDataFetch()
+    }
+
     companion object {
     }
 
     override fun onDetailsClicked(movieId: String) {
-        Log.d("CLICKEED", "details $movieId")
+        val i = MovieDetailsActivity.createIntent(requireContext())
+        i.putExtra("MovieId", movieId)
+        startActivity(i)
     }
 
     override fun onRemoveClicked(movieId: String) {

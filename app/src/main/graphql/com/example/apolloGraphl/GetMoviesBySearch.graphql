@@ -1,0 +1,13 @@
+query MoviesBySearchInput($searchInput: String!) {
+    moviesBySearchInput(searchInput: $searchInput) {
+        _id
+        title
+        description
+        img
+        url
+        category
+        duration
+        releaseDate
+        rating
+    }
+}

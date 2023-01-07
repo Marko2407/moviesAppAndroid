@@ -9,6 +9,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.mvukosav.moviesapp.R
 import com.mvukosav.moviesapp.databinding.LayoutItemMovieBinding
 import com.mvukosav.moviesapp.domain.models.Movie
+import com.mvukosav.moviesapp.utils.setImage
 
 class MoviesRowRecyclerViewAdapter(
     context: Context,
@@ -39,9 +40,7 @@ class MoviesRowRecyclerViewAdapter(
         val context: Context = itemView.context
 
         fun bind(model: Movie) {
-            Glide.with(context).load(model.img).placeholder(R.drawable.movie_img)
-                .diskCacheStrategy(DiskCacheStrategy.ALL).into(binding.imgMovie)
-
+            setImage(context, model.img, binding.imgMovie)
             binding.cardMovie.setOnClickListener {
                 onClickListener.onMovieClicked(model.movieId)
             }

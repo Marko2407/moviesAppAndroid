@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace 'com.mvukosav.moviesapp'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.mvukosav.moviesapp"
         minSdk 28
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -82,6 +82,12 @@ dependencies {
     //Glide for images
     implementation 'com.github.bumptech.glide:glide:4.14.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.18.2'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.18.2'
+    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.18.2'
+
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0'
 }
 
 kapt {

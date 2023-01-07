@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    tools:background="@color/black">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_movie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        app:cardBackgroundColor="@color/black"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_movie"
+            android:layout_width="120dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/movies"
+            android:scaleType="fitXY"
+            android:src="@drawable/movie_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/txt_movie_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:maxLines="2"
+        android:text="The Gray Man"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/card_movie"
+        app:layout_constraintTop_toTopOf="@id/card_movie" />
+
+
+    <include
+        android:id="@+id/txt_movie_category"
+        layout="@layout/item_icon_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/txt_movie_title"
+        app:layout_constraintTop_toBottomOf="@id/txt_movie_title" />
+
+    <include
+        android:id="@+id/txt_movie_yeary"
+        layout="@layout/item_icon_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/txt_movie_title"
+        app:layout_constraintTop_toBottomOf="@id/txt_movie_category" />
+
+    <include
+        android:id="@+id/txt_movie_duration"
+        layout="@layout/item_icon_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/txt_movie_title"
+        app:layout_constraintTop_toBottomOf="@id/txt_movie_yeary" />
+
+    <include
+        android:id="@+id/txt_movie_rating"
+        layout="@layout/item_icon_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/txt_movie_title"
+        app:layout_constraintTop_toBottomOf="@id/txt_movie_duration" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

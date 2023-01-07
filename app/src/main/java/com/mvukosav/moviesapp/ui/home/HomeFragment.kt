@@ -21,6 +21,7 @@ import com.mvukosav.moviesapp.domain.models.Movie
 import com.mvukosav.moviesapp.presentation.home.HomeFragmentViewModel
 import com.mvukosav.moviesapp.presentation.home.adapters.MoviesRecyclerViewAdapter
 import com.mvukosav.moviesapp.presentation.home.adapters.MoviesRowRecyclerViewAdapter
+import com.mvukosav.moviesapp.ui.details.MovieDetailsActivity
 import com.mvukosav.moviesapp.utils.TimeUtil.convertLongToTime
 import com.mvukosav.moviesapp.utils.setGone
 import com.mvukosav.moviesapp.utils.setImage
@@ -56,6 +57,11 @@ class HomeFragment : Fragment(), MoviesRowRecyclerViewAdapter.OnMovieClickListen
         observeAddedMovies()
     }
 
+    override fun onPause() {
+        super.onPause()
+        bottomSheetDialog.hide()
+    }
+
     private fun initRecyclerView() {
         binding.includeMoviesContainer.recyclerViewMovies.apply {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
@@ -78,7 +84,7 @@ class HomeFragment : Fragment(), MoviesRowRecyclerViewAdapter.OnMovieClickListen
         viewModel.fetchMoviesLiveData.observe(viewLifecycleOwner) {
             if (it != null) {
                 moviesRecyclerViewAdapter.swapList(it)
-                binding.btnCategories.setVisible()
+//                binding.btnCategories.setVisible()
             } else {
                 binding.btnCategories.setGone()
                 binding.btnFetchMovies.setVisible()
@@ -134,7 +140,9 @@ class HomeFragment : Fragment(), MoviesRowRecyclerViewAdapter.OnMovieClickListen
         movieAdd = view.findViewById<ImageView>(R.id.btn_add_to_watch_list)
         view.setOnClickListener {
             //open details screen
-            Log.d("CLICKEED", "clicke")
+            val i = MovieDetailsActivity.createIntent(requireContext())
+            i.putExtra("MovieId", movie.movieId)
+            startActivity(i)
         }
 
         setImage(requireContext(), movie.img, movieImg)

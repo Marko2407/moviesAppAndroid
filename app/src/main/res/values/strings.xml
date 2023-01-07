@@ -18,4 +18,8 @@
     <string name="there_is_no_movies_yet">There Is No Movies Yet!</string>
     <string name="add_your_favorite_movies_by_clicking">Add your favorite movies by clicking +</string>
     <string name="fetch_movies">Fetch movies</string>
+    <string name="like">Like</string>
+    <string name="description">Description</string>
+    <string name="we_are_sorry_we_can_not_find_the_movie">We are sorry. We can not find the movie</string>
+    <string name="language">Language</string>
 </resources>
