@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.mvukosav.moviesapp.domain.interactors.splash.LoggedInUser
 import com.mvukosav.moviesapp.domain.interactors.splash.LogoutUser
 import com.mvukosav.moviesapp.domain.models.User
+import com.mvukosav.moviesapp.network.ErrorCode
 import com.mvukosav.moviesapp.network.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.withContext
@@ -21,15 +22,18 @@ class SplashViewModel @Inject constructor(
     private val userLiveData = MutableLiveData<User?>()
     val fetchUserLiveData: LiveData<User?> = userLiveData
 
+    private val errorLiveData = MutableLiveData<String?>()
+    val fetchErrorLiveData: LiveData<String?> = errorLiveData
+
     suspend fun userLogin() {
         withContext(viewModelScope.coroutineContext) {
-            //check if user is login else login user
             when (val response = loggedInUser()) {
                 is Response.Result -> {
                     userLiveData.postValue(response.result)
                 }
                 else -> {
                     userLiveData.postValue(null)
+                    logout()
                 }
             }
         }
@@ -38,8 +42,10 @@ class SplashViewModel @Inject constructor(
     suspend fun logout() {
         withContext(viewModelScope.coroutineContext) {
             //check if user is login else login user
-            when (val response = logoutUser()) {
-                else -> {}
+            if (logoutUser()) {
+                userLiveData.postValue(null)
+            } else {
+                errorLiveData.postValue(ErrorCode.UNKNOWN_ERROR.name)
             }
         }
     }

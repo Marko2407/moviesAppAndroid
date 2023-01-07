@@ -10,7 +10,7 @@ import com.mvukosav.moviesapp.domain.models.Movie
 import com.mvukosav.moviesapp.domain.models.MoviesByCategories
 import com.mvukosav.moviesapp.type.Category
 
-class MoviesDataToDomainMapperImpl(private val context: Context) : MoviesDataToDomainMapper {
+class MoviesDataToDomainMapperImpl() : MoviesDataToDomainMapper {
     private val categories: MutableList<String> = mutableListOf()
     private val userWatchList: MutableList<String> = mutableListOf()
 

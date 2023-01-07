@@ -3,10 +3,12 @@ package com.mvukosav.moviesapp.di
 import android.content.Context
 import com.mvukosav.moviesapp.data.mappers.MoviesDataToDomainMapperImpl
 import com.mvukosav.moviesapp.data.mappers.UserDataToDomainMapperImpl
+import com.mvukosav.moviesapp.data.mappers.UserSharedPreferencesImpl
 import com.mvukosav.moviesapp.data.repositories.RemoteAuthRepository
 import com.mvukosav.moviesapp.data.repositories.RemoteMoviesRepository
 import com.mvukosav.moviesapp.domain.mappers.MoviesDataToDomainMapper
 import com.mvukosav.moviesapp.domain.mappers.UserDataToDomainMapper
+import com.mvukosav.moviesapp.domain.mappers.UserSharedPreferences
 import com.mvukosav.moviesapp.domain.repositories.AuthRepository
 import com.mvukosav.moviesapp.domain.repositories.MoviesRepository
 import dagger.Module
@@ -30,17 +32,21 @@ class RepositoriesModule {
 
     @Singleton
     @Provides
-    fun provideMoviesMapper(@ApplicationContext context: Context): MoviesDataToDomainMapper =
-        MoviesDataToDomainMapperImpl(context)
+    fun provideUserSharedPreferences(@ApplicationContext context: Context): UserSharedPreferences =
+        UserSharedPreferencesImpl(context)
+
+    @Singleton
+    @Provides
+    fun provideMoviesMapper(): MoviesDataToDomainMapper =
+        MoviesDataToDomainMapperImpl()
 
     @Singleton
     @Provides
     fun provideRemoteAuthRepository(
         provideUserDataToDomainMapper: UserDataToDomainMapper,
-        @ApplicationContext context: Context
+        provideUserSharedPreferences: UserSharedPreferences
     ): AuthRepository =
-        RemoteAuthRepository(provideUserDataToDomainMapper, context)
-
+        RemoteAuthRepository(provideUserDataToDomainMapper, provideUserSharedPreferences)
 
     @Singleton
     @Provides

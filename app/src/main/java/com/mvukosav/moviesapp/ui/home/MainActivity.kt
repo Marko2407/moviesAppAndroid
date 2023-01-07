@@ -16,6 +16,7 @@ import com.mvukosav.moviesapp.domain.models.User
 import com.mvukosav.moviesapp.presentation.home.MainActivityViewModel
 import com.mvukosav.moviesapp.ui.search.SearchActivity
 import com.mvukosav.moviesapp.ui.settings.SettingsActivity
+import com.mvukosav.moviesapp.ui.splash.SplashActivity
 import com.mvukosav.moviesapp.ui.watchlist.WatchListFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,7 +48,8 @@ class MainActivity : AppCompatActivity() {
                 binding.userProfile.text = user.userInitials
                 setUserSideDrawer(user)
             } else {
-                logout()
+                //go to splash screen
+                openSplashScreen()
             }
         }
     }
@@ -169,6 +171,12 @@ class MainActivity : AppCompatActivity() {
 //                toastMsg(this, getString(R.string.something_went_wrong_please_try_again))
 //            }
 //        }
+    }
+
+    private fun openSplashScreen() {
+        startActivity(SplashActivity.createIntent(this))
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        finish()
     }
 
     companion object {

@@ -8,5 +8,5 @@ import javax.inject.Inject
 class LoggedInUser @Inject constructor(
     private val authRepository: AuthRepository
 ){
-    suspend operator fun invoke(): Response<User> = authRepository.loggedInUser()
+    suspend operator fun invoke(): Response<User?> = authRepository.loggedInUser()
 }
