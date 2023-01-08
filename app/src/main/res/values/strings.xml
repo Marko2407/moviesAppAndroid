@@ -24,4 +24,10 @@
     <string name="language">Language</string>
     <string name="email_label">Email</string>
     <string name="invalid_email_or_password">Invalid email or password!</string>
+    <string name="registration">Registration</string>
+    <string name="full_name">Full name</string>
+    <string name="already_have_an_account">Already have an account</string>
+    <string name="create_account">Create account</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="password">Password</string>
 </resources>

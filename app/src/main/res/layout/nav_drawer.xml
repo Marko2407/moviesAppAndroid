@@ -19,6 +19,7 @@
         android:backgroundTint="@color/dark_grey"
         android:shadowColor="@color/dark_grey"
         android:stateListAnimator="@null"
+        android:textColor="@color/white"
         android:text="Log out"
         android:textSize="14sp" />
 

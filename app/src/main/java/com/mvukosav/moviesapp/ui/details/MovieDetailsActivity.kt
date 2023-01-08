@@ -99,10 +99,10 @@ class MovieDetailsActivity : AppCompatActivity(),
             binding.toolbar.btnToolbarEnd.background = setWatchListIconColor(Actions.ADD == it)
             if (it == Actions.ADD) Toast.makeText(
                 this,
-                "Successfully removed item",
+                "Successfully added item",
                 Toast.LENGTH_SHORT
             ).show()
-            else Toast.makeText(this, "Successfully added item", Toast.LENGTH_SHORT).show()
+            else Toast.makeText(this, "Successfully removed item", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -139,7 +139,7 @@ class MovieDetailsActivity : AppCompatActivity(),
 
         binding.movieTitle.text = movie.title
         binding.layoutCategory.apply {
-            txtTitle.text = movie.category[0].lowercase()
+            txtTitle.text = movie.category[0].lowercase().replaceFirstChar { it.titlecase() }
             imgIcon.setImageDrawable(
                 AppCompatResources.getDrawable(
                     this@MovieDetailsActivity,

@@ -7,6 +7,7 @@ import com.mvukosav.moviesapp.GetMovieByIdQuery
 import com.mvukosav.moviesapp.MoviesBySearchInputQuery
 import com.mvukosav.moviesapp.RemoveFromFavoriteMutation
 import com.mvukosav.moviesapp.domain.mappers.MoviesDataToDomainMapper
+import com.mvukosav.moviesapp.domain.mappers.UserSharedPreferences
 import com.mvukosav.moviesapp.domain.models.Actions
 import com.mvukosav.moviesapp.domain.models.Movie
 import com.mvukosav.moviesapp.domain.models.MoviesByCategories
@@ -19,7 +20,8 @@ import com.mvukosav.moviesapp.utils.ErrorManager.parserApiError
 import javax.inject.Inject
 
 class RemoteMoviesRepository @Inject constructor(
-    private val moviesDataToDomainMapper: MoviesDataToDomainMapper
+    private val moviesDataToDomainMapper: MoviesDataToDomainMapper,
+    private val userSharedPreferences: UserSharedPreferences
 ) : MoviesRepository {
     private var movies: MutableList<Movie> = mutableListOf()
 
@@ -152,12 +154,14 @@ class RemoteMoviesRepository @Inject constructor(
     }
 
     private suspend fun addToWatchListMutation(movieId: String): ApolloResponse<AddToFavoriteMutation.Data> {
+        val user = userSharedPreferences.getUserIdSP()
         return GraphQlManager.apolloClient()
-            .mutation(AddToFavoriteMutation(movieId, "63b4a592d59cfb4cc8dbe8fe")).execute()
+            .mutation(AddToFavoriteMutation(movieId, user)).execute()
     }
 
     private suspend fun removeFromWatchListMutation(movieId: String): ApolloResponse<RemoveFromFavoriteMutation.Data> {
         return GraphQlManager.apolloClient()
-            .mutation(RemoveFromFavoriteMutation(movieId, "63b4a592d59cfb4cc8dbe8fe")).execute()
+            .mutation(RemoveFromFavoriteMutation(movieId, userSharedPreferences.getUserIdSP()))
+            .execute()
     }
 }

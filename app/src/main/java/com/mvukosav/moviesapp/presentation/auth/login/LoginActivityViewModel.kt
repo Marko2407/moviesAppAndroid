@@ -42,8 +42,13 @@ class LoginActivityViewModel @Inject constructor(
                         userLiveData.postValue(null)
                         errorLiveData.postValue(response.error.name)
                     }
+                    is Response.NetworkError -> {
+                        userLiveData.postValue(null)
+                        errorLiveData.postValue("Check your network")
+                    }
                     else -> {
                         userLiveData.postValue(null)
+                        errorLiveData.postValue("Unknown error")
                     }
                 }
             }
@@ -56,9 +61,16 @@ class LoginActivityViewModel @Inject constructor(
                 is Response.Result -> {
                     userLiveData.postValue(result)
                 }
+                is Response.ErrorApi -> {
+                    userLiveData.postValue(null)
+                }
+                is Response.NetworkError -> {
+                    userLiveData.postValue(null)
+                    errorLiveData.postValue("Check your network")
+                }
                 else -> {
                     userLiveData.postValue(null)
-                    errorLiveData.postValue("Unknown erroe")
+                    errorLiveData.postValue("Unknown error")
                 }
             }
         }
@@ -72,7 +84,6 @@ class LoginActivityViewModel @Inject constructor(
         if (!email.contains("@")) {
             error = true
         }
-
 
         if (!error) {
             inputValidationLiveData.postValue(true)

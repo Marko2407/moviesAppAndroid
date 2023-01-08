@@ -1,6 +1,5 @@
 package com.mvukosav.moviesapp.data.mappers
 
-import android.content.Context
 import com.mvukosav.moviesapp.GetAllMoviesQuery
 import com.mvukosav.moviesapp.GetMovieByIdQuery
 import com.mvukosav.moviesapp.GetUserQuery
@@ -10,7 +9,7 @@ import com.mvukosav.moviesapp.domain.models.Movie
 import com.mvukosav.moviesapp.domain.models.MoviesByCategories
 import com.mvukosav.moviesapp.type.Category
 
-class MoviesDataToDomainMapperImpl() : MoviesDataToDomainMapper {
+class MoviesDataToDomainMapperImpl : MoviesDataToDomainMapper {
     private val categories: MutableList<String> = mutableListOf()
     private val userWatchList: MutableList<String> = mutableListOf()
 

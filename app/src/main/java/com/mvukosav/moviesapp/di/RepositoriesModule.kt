@@ -52,6 +52,7 @@ class RepositoriesModule {
     @Provides
     fun provideRemoteMoviesRepository(
         provideMoviesDataToDomainMapper: MoviesDataToDomainMapper,
+        provideUserSharedPreferences: UserSharedPreferences
     ): MoviesRepository =
-        RemoteMoviesRepository(provideMoviesDataToDomainMapper)
+        RemoteMoviesRepository(provideMoviesDataToDomainMapper,provideUserSharedPreferences)
 }
