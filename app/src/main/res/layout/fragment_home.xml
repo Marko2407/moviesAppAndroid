@@ -37,6 +37,7 @@
         <include
             android:id="@+id/include_movies_container"
             layout="@layout/layout_movies"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:contentDescription="@string/home" />

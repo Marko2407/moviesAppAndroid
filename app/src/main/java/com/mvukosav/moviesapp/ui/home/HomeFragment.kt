@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -27,6 +28,8 @@ import com.mvukosav.moviesapp.utils.setGone
 import com.mvukosav.moviesapp.utils.setImage
 import com.mvukosav.moviesapp.utils.setVisible
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(), MoviesRowRecyclerViewAdapter.OnMovieClickListener {
@@ -85,6 +88,7 @@ class HomeFragment : Fragment(), MoviesRowRecyclerViewAdapter.OnMovieClickListen
             if (it != null) {
                 moviesRecyclerViewAdapter.swapList(it)
 //                binding.btnCategories.setVisible()
+                binding.includeMoviesContainer.root.setVisible()
             } else {
                 binding.btnCategories.setGone()
                 binding.btnFetchMovies.setVisible()
@@ -154,7 +158,10 @@ class HomeFragment : Fragment(), MoviesRowRecyclerViewAdapter.OnMovieClickListen
         else movieAdd.setImageResource(R.drawable.add_icon)
 
         movieAdd.setOnClickListener {
-            if (movie.isAddedToWatchList) viewModel.addMovieToWatchList(movie.movieId, Actions.REMOVE)
+            if (movie.isAddedToWatchList) viewModel.addMovieToWatchList(
+                movie.movieId,
+                Actions.REMOVE
+            )
             else viewModel.addMovieToWatchList(movie.movieId, Actions.ADD)
         }
         bottomSheetDialog.show()

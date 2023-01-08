@@ -11,6 +11,6 @@ fun setImage(context: Context, url: String?, imageView: ImageView){
     Glide.with(context).load(url)
         .fitCenter()
         .diskCacheStrategy(DiskCacheStrategy.ALL)
-        .placeholder(R.drawable.movie_img)
+        .placeholder(R.drawable.mockup)
         .into(imageView)
 }
