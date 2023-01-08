@@ -33,3 +33,5 @@ keystore.properties
 # Google Services (e.g. APIs or Firebase)
 # google-services.json
 .DS_Store
+app/google-services.json
+google-services.json
