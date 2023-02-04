@@ -10,7 +10,6 @@ import com.mvukosav.moviesapp.databinding.ActivitySettingsBinding
 
 class SettingsActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingsBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
@@ -18,7 +17,6 @@ class SettingsActivity : AppCompatActivity() {
         binding.toolbar.txtToolbarTitle.text = this.getString(R.string.search)
         setOnClickListeners()
     }
-
     private fun setOnClickListeners() {
         binding.toolbar.btnToolbarStart.setOnClickListener {
             finish()
@@ -27,7 +25,6 @@ class SettingsActivity : AppCompatActivity() {
             Toast.makeText(this, "Successfully selected language", Toast.LENGTH_SHORT).show()
         }
     }
-
     companion object {
         fun createIntent(context: Context) = Intent(context, SettingsActivity::class.java)
     }

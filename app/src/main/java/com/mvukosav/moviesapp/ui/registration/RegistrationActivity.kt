@@ -92,7 +92,6 @@ class RegistrationActivity : AppCompatActivity() {
         }
     }
 
-
     private fun enableRegistrationBtn() {
         binding.createNewAccountBtn.apply {
             setBackgroundColor(ContextCompat.getColor(this@RegistrationActivity, R.color.baby_blue))

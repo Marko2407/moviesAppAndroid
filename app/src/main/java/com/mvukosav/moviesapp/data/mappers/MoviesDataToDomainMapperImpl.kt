@@ -2,16 +2,30 @@ package com.mvukosav.moviesapp.data.mappers
 
 import com.mvukosav.moviesapp.GetAllMoviesQuery
 import com.mvukosav.moviesapp.GetMovieByIdQuery
+import com.mvukosav.moviesapp.GetRecommendedMoviesQuery
 import com.mvukosav.moviesapp.GetUserQuery
 import com.mvukosav.moviesapp.MoviesBySearchInputQuery
 import com.mvukosav.moviesapp.domain.mappers.MoviesDataToDomainMapper
 import com.mvukosav.moviesapp.domain.models.Movie
 import com.mvukosav.moviesapp.domain.models.MoviesByCategories
+import com.mvukosav.moviesapp.domain.models.RecommendedMovies
 import com.mvukosav.moviesapp.type.Category
 
 class MoviesDataToDomainMapperImpl : MoviesDataToDomainMapper {
     private val categories: MutableList<String> = mutableListOf()
     private val userWatchList: MutableList<String> = mutableListOf()
+    override fun recommendedMoviesDataToDomain(movies: List<GetRecommendedMoviesQuery.MoviesRecommendation>): MutableList<RecommendedMovies> {
+        val recommendedMovies = mutableListOf<RecommendedMovies>()
+        movies.forEach{ movie ->
+            if (movie.movies?.isNotEmpty() == true){
+                recommendedMovies.add(RecommendedMovies(
+                    movie.recommendationType,
+                    recommendedMovieDataToDomainMapper(movie.movies)
+                ))
+            }
+        }
+        return recommendedMovies
+    }
 
     override fun moviesDataToDomain(movies: MutableList<Movie>): MutableList<MoviesByCategories> {
         val moviesByCategories = mutableListOf<MoviesByCategories>()
@@ -79,7 +93,7 @@ class MoviesDataToDomainMapperImpl : MoviesDataToDomainMapper {
 
         movies.filter {
             it.category[0] == category.uppercase()
-        }.let { 
+        }.let {
             filteredMovies = it.toMutableList()
         }
         return filteredMovies
@@ -144,6 +158,27 @@ class MoviesDataToDomainMapperImpl : MoviesDataToDomainMapper {
             rating = movies.rating,
             isAddedToWatchList = userWatchList.contains(movies._id)
         )
+    }
+
+    private fun recommendedMovieDataToDomainMapper(movies: List<GetRecommendedMoviesQuery.Movie>): MutableList<Movie> {
+        val recommendedMovies = mutableListOf<Movie>()
+        movies.forEach { movie ->
+            recommendedMovies.add(
+                Movie(
+                    movieId = movie._id,
+                    title = movie.title,
+                    description = movie.description,
+                    category = categoriesDataToDomainMapper(movie.category),
+                    duration = movie.duration,
+                    releaseDate = movie.releaseDate,
+                    img = movie.img,
+                    url = movie.url,
+                    rating = movie.rating,
+                    isAddedToWatchList = userWatchList.contains(movie._id)
+                )
+            )
+        }
+        return recommendedMovies
     }
 
 

@@ -22,7 +22,6 @@ class WatchListFragmentViewModel @Inject constructor(
     private val errorLiveData = MutableLiveData<String?>()
     val fetchErrorLiveData: LiveData<String?> = errorLiveData
 
-
     private val watchListMoviesLiveData = MutableLiveData<MutableList<Movie>?>()
     val fetchWatchListMoviesLiveData: LiveData<MutableList<Movie>?> = watchListMoviesLiveData
 

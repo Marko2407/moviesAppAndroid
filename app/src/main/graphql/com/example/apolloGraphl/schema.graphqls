@@ -23,6 +23,17 @@ enum Category {
   ROMANTIC
 }
 
+type ListRecommendedMovies {
+  recommendationType: String
+  movies: [Movie!]
+}
+
+type RecommendedMovies {
+  mostRatedMovies: [Movie!]
+  mostPopularMovies: [Movie!]
+  personalMovies: [Movie!]
+}
+
 type Movie {
   _id: ID!
   title: String!
@@ -33,6 +44,7 @@ type Movie {
   duration: Int!
   releaseDate: String!
   rating: Float
+  favoriteCounter: Int
 }
 
 type AuthData {
@@ -40,6 +52,11 @@ type AuthData {
   token: String!
   refreshToken: String!
   tokenExpired: Int!
+}
+
+type MoviesByCategories {
+  category: String!
+  movies: [Movie!]
 }
 
 type Token {
@@ -71,6 +88,8 @@ type RootQuery {
   movies: [Movie!]
   movieById(movieId: ID!): Movie!
   moviesBySearchInput(searchInput: String!): [Movie!]
+  moviesRecommendation(userId: ID!): [ListRecommendedMovies!]
+  moviesByCategories: [MoviesByCategories!]
 }
 
 type RootMutation {

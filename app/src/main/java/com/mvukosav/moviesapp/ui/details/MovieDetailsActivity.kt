@@ -121,7 +121,6 @@ class MovieDetailsActivity : AppCompatActivity(),
         }
     }
 
-
     override fun onDestroy() {
         super.onDestroy()
         mYouTubePlayer?.pause()

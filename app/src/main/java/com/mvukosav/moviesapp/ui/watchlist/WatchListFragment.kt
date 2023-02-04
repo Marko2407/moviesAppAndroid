@@ -1,7 +1,6 @@
 package com.mvukosav.moviesapp.ui.watchlist
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +24,6 @@ class WatchListFragment : Fragment(), OnWatchListClickListener {
     private lateinit var binding: FragmentWatchListBinding
     private val viewModel: WatchListFragmentViewModel by viewModels()
     private lateinit var watchListRecyclerView: WatchListRecyclerViewAdapter
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,9 +61,6 @@ class WatchListFragment : Fragment(), OnWatchListClickListener {
                     binding.watchListRecyclerView.setVisible()
                     binding.noMoviesLayout.setGone()
                 }
-            } else {
-                //set btn visible
-                //set view visible
             }
         }
     }

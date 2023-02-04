@@ -161,18 +161,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun observeLogout() {
-//        viewModel.logoutResponseLiveData.observe(this) {
-//            if (it != null) {
-//                startActivity(SplashActivity.createIntent(this))
-//                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-//                finish()
-//            } else {
-//                toastMsg(this, getString(R.string.something_went_wrong_please_try_again))
-//            }
-//        }
-    }
-
     private fun openSplashScreen() {
         startActivity(SplashActivity.createIntent(this))
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out)

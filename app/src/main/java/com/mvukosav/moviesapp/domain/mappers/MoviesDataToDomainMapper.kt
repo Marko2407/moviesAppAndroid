@@ -2,12 +2,16 @@ package com.mvukosav.moviesapp.domain.mappers
 
 import com.mvukosav.moviesapp.GetAllMoviesQuery
 import com.mvukosav.moviesapp.GetMovieByIdQuery
+import com.mvukosav.moviesapp.GetRecommendedMoviesQuery
 import com.mvukosav.moviesapp.GetUserQuery
 import com.mvukosav.moviesapp.MoviesBySearchInputQuery
 import com.mvukosav.moviesapp.domain.models.Movie
 import com.mvukosav.moviesapp.domain.models.MoviesByCategories
+import com.mvukosav.moviesapp.domain.models.RecommendedMovies
 
 interface MoviesDataToDomainMapper {
+
+    fun recommendedMoviesDataToDomain(movies: List<GetRecommendedMoviesQuery.MoviesRecommendation>): MutableList<RecommendedMovies>
 
     fun moviesDataToDomain(movies: MutableList<Movie>): MutableList<MoviesByCategories>
 

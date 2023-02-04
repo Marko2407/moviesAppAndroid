@@ -4,6 +4,7 @@ import com.apollographql.apollo3.api.ApolloResponse
 import com.mvukosav.moviesapp.AddToFavoriteMutation
 import com.mvukosav.moviesapp.GetAllMoviesQuery
 import com.mvukosav.moviesapp.GetMovieByIdQuery
+import com.mvukosav.moviesapp.GetRecommendedMoviesQuery
 import com.mvukosav.moviesapp.MoviesBySearchInputQuery
 import com.mvukosav.moviesapp.RemoveFromFavoriteMutation
 import com.mvukosav.moviesapp.domain.mappers.MoviesDataToDomainMapper
@@ -11,6 +12,7 @@ import com.mvukosav.moviesapp.domain.mappers.UserSharedPreferences
 import com.mvukosav.moviesapp.domain.models.Actions
 import com.mvukosav.moviesapp.domain.models.Movie
 import com.mvukosav.moviesapp.domain.models.MoviesByCategories
+import com.mvukosav.moviesapp.domain.models.RecommendedMovies
 import com.mvukosav.moviesapp.domain.repositories.MoviesRepository
 import com.mvukosav.moviesapp.network.Response
 import com.mvukosav.moviesapp.network.graphql.GraphQlManager
@@ -24,6 +26,26 @@ class RemoteMoviesRepository @Inject constructor(
     private val userSharedPreferences: UserSharedPreferences
 ) : MoviesRepository {
     private var movies: MutableList<Movie> = mutableListOf()
+    override suspend fun getRecommendedMovies(): Response<MutableList<RecommendedMovies>?> {
+        val user = userSharedPreferences.getUserIdSP()
+        return try {
+            val response = GraphQlManager.apolloClient().query(GetRecommendedMoviesQuery(user)).execute()
+            val movies =
+                response.data?.moviesRecommendation
+
+            when {
+                isErrorApi(response.errors) -> parserApiError(response.errors)
+                else -> {
+                    if (movies != null) {
+                        val mappedMovies = moviesDataToDomainMapper.recommendedMoviesDataToDomain(movies)
+                        Response.Result(mappedMovies)
+                    } else Response.Result(null)
+                }
+            }
+        }catch (e: Exception){
+            return errorHandler(e)
+        }
+    }
 
     override suspend fun getAllMovies(): Response<MutableList<MoviesByCategories>?> {
         return try {

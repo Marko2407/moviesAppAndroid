@@ -1,0 +1,17 @@
+query GetMoviesByCategoriesQuery {
+    moviesByCategories {
+        category
+        movies {
+            _id
+            title
+            description
+            img
+            url
+            category
+            duration
+            releaseDate
+            rating
+            favoriteCounter
+        }
+    }
+}

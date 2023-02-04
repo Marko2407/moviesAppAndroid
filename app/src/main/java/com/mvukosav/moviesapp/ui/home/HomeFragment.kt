@@ -2,7 +2,6 @@ package com.mvukosav.moviesapp.ui.home
 
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -22,20 +20,21 @@ import com.mvukosav.moviesapp.domain.models.Movie
 import com.mvukosav.moviesapp.presentation.home.HomeFragmentViewModel
 import com.mvukosav.moviesapp.presentation.home.adapters.MoviesRecyclerViewAdapter
 import com.mvukosav.moviesapp.presentation.home.adapters.MoviesRowRecyclerViewAdapter
+import com.mvukosav.moviesapp.presentation.home.adapters.RecommendedMoviesRecyclerViewAdapter
+import com.mvukosav.moviesapp.presentation.home.adapters.RecommendedMoviesRowRecyclerViewAdapter
 import com.mvukosav.moviesapp.ui.details.MovieDetailsActivity
 import com.mvukosav.moviesapp.utils.TimeUtil.convertLongToTime
 import com.mvukosav.moviesapp.utils.setGone
 import com.mvukosav.moviesapp.utils.setImage
 import com.mvukosav.moviesapp.utils.setVisible
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), MoviesRowRecyclerViewAdapter.OnMovieClickListener {
+class HomeFragment : Fragment(), MoviesRowRecyclerViewAdapter.OnMovieClickListener, RecommendedMoviesRowRecyclerViewAdapter.OnRecommendedMovieClickListener {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeFragmentViewModel by viewModels()
+    private lateinit var recommendedMoviesRecyclerViewAdapter: RecommendedMoviesRecyclerViewAdapter
     private lateinit var moviesRecyclerViewAdapter: MoviesRecyclerViewAdapter
     private lateinit var bottomSheetDialog: BottomSheetDialog
     private lateinit var progressBarDialog: Dialog
@@ -55,6 +54,7 @@ class HomeFragment : Fragment(), MoviesRowRecyclerViewAdapter.OnMovieClickListen
         bottomSheetDialog = BottomSheetDialog(requireContext())
         initRecyclerView()
         createClickListeners()
+        observeRecommendedMovies()
         observeMovies()
         observeMovieDetailsById()
         observeAddedMovies()
@@ -71,6 +71,12 @@ class HomeFragment : Fragment(), MoviesRowRecyclerViewAdapter.OnMovieClickListen
             moviesRecyclerViewAdapter = MoviesRecyclerViewAdapter(context, this@HomeFragment)
             adapter = moviesRecyclerViewAdapter
         }
+
+        binding.includeMoviesContainer.recyclerViewRecommendedMovies.apply {
+            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            recommendedMoviesRecyclerViewAdapter = RecommendedMoviesRecyclerViewAdapter(context, this@HomeFragment)
+            adapter = recommendedMoviesRecyclerViewAdapter
+        }
     }
 
     private fun createClickListeners() {
@@ -83,12 +89,21 @@ class HomeFragment : Fragment(), MoviesRowRecyclerViewAdapter.OnMovieClickListen
         }
     }
 
+    private fun observeRecommendedMovies() {
+        viewModel.fetchRecommendedMoviesLiveData.observe(viewLifecycleOwner) {
+            if (it != null) {
+                recommendedMoviesRecyclerViewAdapter.swapList(it)
+                binding.includeMoviesContainer.root.setVisible()
+            } else {
+                binding.btnCategories.setGone()
+                binding.btnFetchMovies.setVisible()
+            }
+        }
+    }
     private fun observeMovies() {
         viewModel.fetchMoviesLiveData.observe(viewLifecycleOwner) {
             if (it != null) {
                 moviesRecyclerViewAdapter.swapList(it)
-//                binding.btnCategories.setVisible()
-                binding.includeMoviesContainer.root.setVisible()
             } else {
                 binding.btnCategories.setGone()
                 binding.btnFetchMovies.setVisible()
@@ -121,7 +136,6 @@ class HomeFragment : Fragment(), MoviesRowRecyclerViewAdapter.OnMovieClickListen
             }
         }
     }
-
 
     private fun observeError() {
         viewModel.fetchErrorLiveData.observe(viewLifecycleOwner) {
@@ -168,6 +182,10 @@ class HomeFragment : Fragment(), MoviesRowRecyclerViewAdapter.OnMovieClickListen
     }
 
     override fun onMovieClicked(movieId: String) {
+        viewModel.fetchMovieById(movieId)
+    }
+
+    override fun onRecommendedMovieClicked(movieId: String) {
         viewModel.fetchMovieById(movieId)
     }
 }

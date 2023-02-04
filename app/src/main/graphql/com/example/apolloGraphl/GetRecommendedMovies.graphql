@@ -1,0 +1,17 @@
+query GetRecommendedMoviesQuery($userId: ID!) {
+    moviesRecommendation(userId: $userId) {
+        recommendationType
+        movies {
+            _id
+            title
+            description
+            img
+            url
+            category
+            duration
+            releaseDate
+            rating
+            favoriteCounter
+        }
+    }
+}

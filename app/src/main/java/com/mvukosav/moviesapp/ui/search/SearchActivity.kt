@@ -56,7 +56,6 @@ class SearchActivity : AppCompatActivity(), MoviesRowRecyclerViewAdapter.OnMovie
             finish()
         }
     }
-
     private fun initRecyclerViews() {
         binding.searchResultRecyclerView.apply {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
@@ -64,7 +63,6 @@ class SearchActivity : AppCompatActivity(), MoviesRowRecyclerViewAdapter.OnMovie
             adapter = searchRecyclerViewAdapter
         }
     }
-
     private fun observeSearch() {
         viewModel.fetchSearchMoviesLiveData.observe(this) {
             if (it != null) {
@@ -77,7 +75,6 @@ class SearchActivity : AppCompatActivity(), MoviesRowRecyclerViewAdapter.OnMovie
             }
         }
     }
-
 
     private fun openDetailsScreen(movieId: String) {
         val i = MovieDetailsActivity.createIntent(this)

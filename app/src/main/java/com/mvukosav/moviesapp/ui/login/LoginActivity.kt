@@ -106,7 +106,6 @@ class LoginActivity : AppCompatActivity() {
         finish()
     }
 
-
     private fun enableLoginBtn() {
         binding.loginBtn.apply {
             setBackgroundColor(ContextCompat.getColor(this@LoginActivity, R.color.baby_blue))
